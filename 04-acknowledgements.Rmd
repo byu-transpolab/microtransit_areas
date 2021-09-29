@@ -1,4 +1,5 @@
-Acknowledgements
-================================================================================
+`r if (knitr::is_html_output()) '
+# Acknowledgements {-}
+'`
 
 I would like to thank some people
