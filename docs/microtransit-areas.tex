@@ -67,6 +67,7 @@
 
 % Pandoc header
 \usepackage{booktabs}
+\usepackage{ragged2e}
 
 
 
@@ -86,6 +87,8 @@
    \begin{keyword} Microtransit Passive Data Location Choice\end{keyword}
  \end{frontmatter}
 
+\raggedright
+
 \hypertarget{question}{%
 \section{Question}\label{question}}
 
@@ -102,9 +105,16 @@ Here is what I did
 Here's what I found
 
 \hypertarget{acknowledgements}{%
-\section{Acknowledgements}\label{acknowledgements}}
+\section*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{section}{Acknowledgements}
 
 I would like to thank some people
+
+\newpage
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
 
 \bibliography{book.bib}
 
