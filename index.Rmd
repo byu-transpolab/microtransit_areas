@@ -26,4 +26,4 @@ keywords:
   - Passive Data
   - Location Choice
 ---
-\raggedright
+\RaggedRight
