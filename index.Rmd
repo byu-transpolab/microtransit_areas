@@ -14,7 +14,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: article
 journal: "Findings"
-bibliography: [book.bib]
+bibliography: [references.bib]
 biblio-style: apalike
 link-citations: yes
 abstract: |
