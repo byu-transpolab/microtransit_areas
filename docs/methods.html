@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-10-01" />
+<meta name="date" content="2021-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,7 +42,7 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,8 +131,33 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="methods" class="section level1" number="2">
 <h1><span class="header-section-number"> 2</span> Methods</h1>
-<p>Here is what I did</p>
+<p>We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
+This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
+BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation <span class="citation">(<a href="#ref-beamdocs" role="doc-biblioref">The BEAM Team 2017</a>)</span>.
+The version of the BEAM code we used is available at <em>&lt;insert commit ID or other reference to the code&gt;</em>.</p>
+<p>We identified <em>&lt;some number of&gt;</em> potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
+We also created a base scenario for the current system.
+We ran each scenario with the same parameters, and for <em>&lt;x&gt;</em> iterations each.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+BEAM outputs an <code>events</code> file, which we then used to perform our analysis.</p>
+<p>We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
+We also compared the base scenario to the results of UTA’s September 2020 report <span class="citation">(<a href="#ref-UTAreport" role="doc-biblioref">Robertson, Callison, and Taylor 2020</a>)</span>.
+All of the analysis was done in R, and the code is available in the same GitHub repository at <em>&lt;insert&gt;</em>.</p>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-UTAreport" class="csl-entry">
+Robertson, Jaron, Eric Callison, and Ryan Taylor. 2020. <span>“<span>Utah Transit Authority Microtransit Planning Project</span>.”</span> <a href="https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en">https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en</a>.
+</div>
+<div id="ref-beamdocs" class="csl-entry">
+The BEAM Team. 2017. <span>“<span>BEAM Documentation</span>.”</span> <a href="https://beam.readthedocs.io/en/latest/about.html">https://beam.readthedocs.io/en/latest/about.html</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.<a href="methods.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

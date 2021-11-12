@@ -1,4 +1,16 @@
 Methods
 ================================================================================
 
-Here is what I did
+We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
+This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
+BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation [@beamdocs].
+The version of the BEAM code we used is available at *\<insert commit ID or other reference to the code\>*.
+
+We identified *\<some number of\>* potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
+We also created a base scenario for the current system.
+We ran each scenario with the same parameters, and for *\<x\>* iterations each.^[BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.]
+BEAM outputs an `events` file, which we then used to perform our analysis.
+
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
+We also compared the base scenario to the results of UTA's September 2020 report [@UTAreport].
+All of the analysis was done in R, and the code is available in the same GitHub repository at *\<insert\>*.

@@ -89,16 +89,37 @@
 \hypertarget{question}{%
 \section{Question}\label{question}}
 
-In November of 2019, the Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company \citep{UTAreport}. Under this partnership, UTA has supplemented its fixed-route services with on-demand shuttles hailed through a mobile application. So-called ``microtransit'' offerings of this kind have the potential to efficiently extend UTA services into low-density areas and function as first- and last-mile services for the regular fixed-route rail and bus network. The current microtransit service is currently only operating in southern Salt Lake County \citep{UTAonDemand}. UTA is interested in examining if there are other areas where similar services can be effectively deployed.
+In November of 2019, the Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company \citep{UTAreport}.
+Under this partnership, UTA has supplemented its fixed-route services with on-demand shuttles hailed through a mobile application.
+So-called ``microtransit'' offerings of this kind have the potential to efficiently extend UTA services into low-density areas and function as first- and last-mile services for the regular fixed-route rail and bus network.
+The current microtransit service is currently only operating in southern Salt Lake County \citep{UTAonDemand}.
+UTA is interested in examining if there are other areas where similar services can be effectively deployed.
 
-In September 2020, UTA released a report detailing a possible expansion of microtransit services to other areas in Utah following the UTA on Demand pilot program \citep{UTAreport}. 19 zones were identified between Brigham City and Santaquin as areas that could potentially benefit from microtransit services. Ridership was estimated based on number of residents and number of workers employed within each zone, as well as a mode share score that VIA developed based on their internal demand model.
+In September 2020, UTA released a report detailing a possible expansion of microtransit services to other areas in Utah following the UTA on Demand pilot program \citep{UTAreport}.
+19 zones were identified between Brigham City and Santaquin as areas that could potentially benefit from microtransit services.
+Ridership was estimated based on number of residents and number of workers employed within each zone, as well as a mode share score that VIA developed based on their internal demand model.
 
-We seek however to provide UTA and the Utah Department of Transportation (UDOT) with a microsimulation model they can use as a template to examine future similar projects. We want to know how the results of such a model would compare to those of UTA's September 2020 report. Though that report made no definitive recommendations regarding expansion of microtransit services, it may be useful in calibrating our simulation. We also seek to use our results (possibly in conjunction with those of UTA's report) to make recommendations to UTA and UDOT regarding expansion of microtransit services.
+We seek however to provide UTA and the Utah Department of Transportation (UDOT) with a microsimulation model they can use as a template to examine future similar projects.
+We want to know how the results of such a model would compare to those of UTA's September 2020 report.
+Though UTA's own report made no definitive recommendations regarding expansion of microtransit services, it may be useful in calibrating our simulation.
+We also seek to use our results (possibly in conjunction with those of UTA's report) to make recommendations to UTA and UDOT regarding expansion of microtransit services.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-Here is what I did
+We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
+This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
+BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation \citep{beamdocs}.
+The version of the BEAM code we used is available at \emph{\textless insert commit ID or other reference to the code\textgreater{}}.
+
+We identified \emph{\textless some number of\textgreater{}} potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
+We also created a base scenario for the current system.
+We ran each scenario with the same parameters, and for \emph{\textless x\textgreater{}} iterations each.\footnote{BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.}
+BEAM outputs an \texttt{events} file, which we then used to perform our analysis.
+
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
+We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}.
+All of the analysis was done in R, and the code is available in the same GitHub repository at \emph{\textless insert\textgreater{}}.
 
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}
