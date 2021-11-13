@@ -67,6 +67,20 @@
 
 % Pandoc header
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 
 
@@ -119,7 +133,32 @@ BEAM outputs an \texttt{events} file, which we then used to perform our analysis
 
 We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
 We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}.
-All of the analysis was done in R, and the code is available in the same GitHub repository at \emph{\textless insert\textgreater{}}.
+The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in \ref{tab:UTAOD} below.
+
+\begin{table}[H]
+
+\caption{\label{tab:UTAOD}UTA On Demand Report Findings}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+Month & Avg wkday ridership & Utilization & Avg wait time\\
+\midrule
+\cellcolor{gray!6}{DEC} & \cellcolor{gray!6}{224.00} & \cellcolor{gray!6}{1.33} & \cellcolor{gray!6}{9.00}\\
+JAN & 334.00 & 2.00 & 11.00\\
+\cellcolor{gray!6}{FEB} & \cellcolor{gray!6}{392.00} & \cellcolor{gray!6}{2.31} & \cellcolor{gray!6}{12.00}\\
+MAR & 316.00 & 1.88 & 11.00\\
+\cellcolor{gray!6}{APR} & \cellcolor{gray!6}{275.00} & \cellcolor{gray!6}{1.52} & \cellcolor{gray!6}{10.00}\\
+MAY & 105.00 & 0.67 & 8.00\\
+\cellcolor{gray!6}{JUN} & \cellcolor{gray!6}{162.00} & \cellcolor{gray!6}{1.10} & \cellcolor{gray!6}{9.00}\\
+JUL & 155.00 & 1.10 & 9.00\\
+\cellcolor{gray!6}{AUG} & \cellcolor{gray!6}{193.00} & \cellcolor{gray!6}{1.50} & \cellcolor{gray!6}{12.00}\\
+SEP & 214.00 & 1.60 & 12.00\\
+\cellcolor{gray!6}{OCT} & \cellcolor{gray!6}{200.00} & \cellcolor{gray!6}{1.70} & \cellcolor{gray!6}{13.00}\\
+NOV & 169.00 & 1.70 & 13.00\\
+\textbf{\cellcolor{gray!6}{Average}} & \textbf{\cellcolor{gray!6}{228.25}} & \textbf{\cellcolor{gray!6}{1.53}} & \textbf{\cellcolor{gray!6}{10.75}}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}

@@ -25,7 +25,28 @@ keywords:
   - Microtransit
   - Passive Data
   - Location Choice
+editor_options: 
+  chunk_output_type: console
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r load_packages, include=FALSE}
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(
+  char = as.character(read.csv("U:/shayd/R_packages/packages.csv", header = F)[,1])
+  )
+tar_unscript()
+install_github("atchley-sha/R-packageSHA")
+library(packageSHA)
+```
+
 
 Question
 ================================================================================

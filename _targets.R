@@ -1,5 +1,4 @@
 library(targets)
-library(tarchetypes)
 # This is an example _targets.R file. Every
 # {targets} pipeline needs one.
 # Use tar_script() to create _targets.R and tar_edit()
@@ -8,7 +7,11 @@ library(tarchetypes)
 # and tar_read(summary) to view the results.
 
 # Set target-specific options such as packages.
-tar_option_set(packages = c("tidyverse", "bookdown"))
+tar_option_set(
+  packages = as.character(read.csv(
+    "U:/shayd/R_packages/packages.csv",
+    header = F)[,1])
+  )
 
 # Define custom functions and other global objects.
 # This is where you write source(\"R/functions.R\")
@@ -18,16 +21,23 @@ source("R/functions.R")
 
 # Targets necessary to build your data and run your model
 data_targets <- list(
-  tar_target(data, data.frame(x = sample.int(100), y = sample.int(100))),
-  tar_target(summary, summ(data)) # Call your custom functions as needed.
+  
+  tar_target(
+    read_data,
+    "data/39.events.csv",
+    format = "file"
+    ),
+  
+  tar_target(
+    count_events,
+    read_data
+  )
 )
 
 
 
 # Targets necessary to build the book / article
-book_targets <- list(
-  tar_target(report, rmarkdown::)
-)
+book_targets <- list()
 
 
 
