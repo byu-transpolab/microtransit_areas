@@ -67,6 +67,7 @@
 
 % Pandoc header
 \usepackage{booktabs}
+\usepackage{ragged2e}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -100,6 +101,8 @@
    \begin{keyword} Microtransit Passive Data Location Choice\end{keyword}
  \end{frontmatter}
 
+\RaggedRight
+
 \hypertarget{question}{%
 \section{Question}\label{question}}
 
@@ -128,7 +131,7 @@ The version of the BEAM code we used is available at \emph{\textless insert comm
 
 We identified \emph{\textless some number of\textgreater{}} potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
 We also created a base scenario for the current system.
-We ran each scenario with the same parameters, and for \emph{\textless x\textgreater{}} iterations each.\footnote{BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.}
+We ran each scenario with the same parameters, and for 15 iterations each.\footnote{BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.}
 BEAM outputs an \texttt{events} file, which we then used to perform our analysis.
 
 We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
@@ -156,6 +159,7 @@ SEP & 214.00 & 1.60 & 12.00\\
 \cellcolor{gray!6}{OCT} & \cellcolor{gray!6}{200.00} & \cellcolor{gray!6}{1.70} & \cellcolor{gray!6}{13.00}\\
 NOV & 169.00 & 1.70 & 13.00\\
 \textbf{\cellcolor{gray!6}{Average}} & \textbf{\cellcolor{gray!6}{228.25}} & \textbf{\cellcolor{gray!6}{1.53}} & \textbf{\cellcolor{gray!6}{10.75}}\\
+\textbf{Average Jan--Mar} & \textbf{347.33} & \textbf{2.06} & \textbf{11.33}\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -163,7 +167,41 @@ NOV & 169.00 & 1.70 & 13.00\\
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}
 
-Here's what I found
+The metrics we calculated for each of the scenarios are given in \ref{tab:comparison}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrrrrr}
+\toprule
+Scenario & Total Ridership & Ride Hail Trips & Percent of RH Trips & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
+\midrule
+\cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006} & \cellcolor{gray!6}{930} & \cellcolor{gray!6}{1.16} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
+South SLC with Airport & 1395 & 1328 & 1.66 & 5.37 & 2.87\\
+\cellcolor{gray!6}{South SLC/Airport/Sandy} & \cellcolor{gray!6}{2796} & \cellcolor{gray!6}{2473} & \cellcolor{gray!6}{3.08} & \cellcolor{gray!6}{5.77} & \cellcolor{gray!6}{3.84}\\
+South SLC/Airport/West Jordan & 2620 & 2353 & 2.93 & 5.53 & 3.59\\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## [1] "Utilization is calculated as passengers per hour per vehicle"
+\end{verbatim}
+
+We also compared some of these metrics to the UDOT report. We used the average from January through March. These results are given in \ref{tab:UDOTComparison}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Scenario & Total Ridership & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
+\midrule
+\cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006.00} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
+UDOT Report & 347.33 & 11.33 & 2.06\\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
+\end{tabular}
+\end{table}
 
 \hypertarget{acknowledgements}{%
 \section*{Acknowledgements}\label{acknowledgements}}
