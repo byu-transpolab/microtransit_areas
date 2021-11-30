@@ -1,7 +1,0 @@
-name|type|data|command|depend|seed|path|time|size|bytes|format|iteration|parent|children|seconds|warnings|error
-handle_events|stem|703387b3005f8ff3|15fdc5e1a82b7ecb|ef46db3751d8e999|-623919605|data/39.events.csv|t18898.9331134259s|17484ec7091248b6|277681107|file|vector|||2.03||
-read_data|stem|703387b3005f8ff3|15fdc5e1a82b7ecb|ef46db3751d8e999|905930884|data/39.events.csv|t18898.9331134259s|17484ec7091248b6|277681107|file|vector|||2.08||
-count_events|stem|41d84f9237c742a3|79d707f78a52001f|280741a30a55b45f|37536752||t18944.2343687855s|35a2cf8917c74ac4|71|rds|vector|||0||
-summ|function|725b50cbf04a3ed2||||||||||||||
-book_targets|object|ed7cf0cb2b8d968e||||||||||||||
-data_targets|object|80ac3b2940b84773||||||||||||||
