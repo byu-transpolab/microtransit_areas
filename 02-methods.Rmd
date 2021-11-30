@@ -13,7 +13,7 @@ The version of the BEAM code we used is available at *\<insert commit ID or othe
 
 We identified *\<some number of\>* potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
 We also created a base scenario for the current system.
-We ran each scenario with the same parameters, and for *\<x\>* iterations each.^[BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.]
+We ran each scenario with the same parameters, and for 15 iterations each.^[BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.]
 BEAM outputs an `events` file, which we then used to perform our analysis.
 
 We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
@@ -22,15 +22,22 @@ The results of that report used many qualitative metrics, but some quantitative 
 
 ```{r UTAOD}
 UTAOD <- read_csv("data/UTAODpilotinfo.csv")
+UTAODJM <- UTAOD %>% 
+  filter(Month %in% c("JAN", "FEB", "MAR"))
 
 UTAOD %<>% 
   add_row(Month = "Average",
           `Avg wkday ridership` = mean(UTAOD$`Avg wkday ridership`),
           Utilization = mean(UTAOD$Utilization),
-          `Avg wait time` = mean(UTAOD$`Avg wait time`))
+          `Avg wait time` = mean(UTAOD$`Avg wait time`)
+  ) %>% 
+  add_row(Month = "Average Jan--Mar",
+          `Avg wkday ridership` = mean(UTAODJM$`Avg wkday ridership`),
+          Utilization = mean(UTAODJM$Utilization),
+          `Avg wait time` = mean(UTAODJM$`Avg wait time`))
 
 UTAOD %>% 
   my_kbl(align = 'lrrr',
          caption = "UTA On Demand Report Findings") %>%
-  row_spec(nrow(UTAOD), bold = T)
+  row_spec((nrow(UTAOD)-1):nrow(UTAOD), bold = T)
 ```

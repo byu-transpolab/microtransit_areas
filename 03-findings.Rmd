@@ -1,4 +1,52 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 Findings
 ================================================================================
 
-Here's what I found
+```{r load_events}
+SLCSouth <- read_events("data/outputEvents/SLCSouth.csv")
+Airport <- read_events("data/outputEvents/SLCSouth_WestCity.csv")
+Jordan <- read_events("data/outputEvents/SLCSouth_WestCity_WestJordan.csv")
+Sandy <- read_events("data/outputEvents/SLCSouth_WestCity_Sandy.csv")
+```
+
+The metrics we calculated for each of the scenarios are given in \@ref(tab:comparison).
+
+```{r comparison}
+comparison <- compare_scenarios(
+  list(
+    "South SL County only" = SLCSouth,
+    "South SLC with Airport" = Airport,
+    "South SLC/Airport/Sandy" = Sandy,
+    "South SLC/Airport/West Jordan" = Jordan),
+  nVehicles = c(12, 24, 36, 36))
+
+colnames(comparison)[6] <- "Utilization$^{\\text{a}}$"
+  
+comparison %>% 
+  my_kbl(align = 'lrrrrr') %>% 
+  row_spec(4, hline_after = T) %>% 
+  add_footnote("Utilization is calculated as passengers per hour per vehicle")
+```
+
+We also compared some of these metrics to the UDOT report. We used the average from January through March. These results are given in \@ref(tab:UDOTComparison).
+
+```{r UDOTComparison}
+comparison <- compare_scenarios(
+  list("South SL County only" = SLCSouth)) %>% 
+  select(1,2,5,6) %>% 
+  add_row("Scenario" = "UDOT Report",
+          "Total Ridership" = mean(UTAODJM$`Avg wkday ridership`),
+          "Average Wait Time (minutes)" = mean(UTAODJM$`Avg wait time`),
+          "Utilization" = mean(UTAODJM$Utilization))
+
+colnames(comparison)[4] <- "Utilization$^{\\text{a}}$"
+  
+comparison %>% 
+  my_kbl(align = 'lrrr') %>% 
+  add_footnote("Utilization is calculated as passengers per hour per vehicle")
+```
+
