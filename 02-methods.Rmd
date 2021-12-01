@@ -11,6 +11,9 @@ This model is being developed by Lawrence Berkeley National Laboratory and the U
 BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation [@beamdocs].
 The version of the BEAM code we used is available at *\<insert commit ID or other reference to the code\>*.
 
+We modified beam to include geofencing that is described by well known text (code that converts a shapefile).
+Describe how we got fleet size and shifts etc.
+
 We identified *\<some number of\>* potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
 We also created a base scenario for the current system.
 We ran each scenario with the same parameters, and for 15 iterations each.^[BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.]
