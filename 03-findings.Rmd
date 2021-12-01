@@ -32,7 +32,8 @@ comparison <- compare_scenarios(
 colnames(comparison)[4] <- "Utilization$^{\\text{a}}$"
   
 comparison %>% 
-  my_kbl(align = 'lrrr') %>% 
+  my_kbl(align = 'lrrr',
+         caption = "Comparison of Actual Pilot Program Data with Simulated Base Scenario") %>% 
   add_footnote("Utilization is calculated as passengers per hour per vehicle")
 ```
 
@@ -55,7 +56,8 @@ comparison <- compare_scenarios(
 colnames(comparison)[6] <- "Utilization$^{\\text{a}}$"
   
 comparison %>% 
-  my_kbl(align = 'lrrrrr') %>% 
+  my_kbl(align = 'lrrrrr',
+         caption = "Comparison of Simulated Scenarios") %>% 
   add_footnote("Utilization is calculated as passengers per hour per vehicle")
 ```
 
