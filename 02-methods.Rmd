@@ -21,7 +21,7 @@ BEAM outputs an `events` file, which we then used to perform our analysis.
 
 We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
 We also compared the base scenario to the results of UTA's September 2020 report [@UTAreport].
-The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in \@ref(tab:UTAOD) below.
+The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table \@ref(tab:UTAOD) below.
 
 ```{r UTAOD}
 UTAOD <- read_csv("data/UTAODpilotinfo.csv")

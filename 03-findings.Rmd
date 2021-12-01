@@ -18,7 +18,7 @@ We calculated several metrics from the output of our base ("South SL County only
 Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in lat March 2020.
 We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it.
 We therefore decided to use the average of the data from January through March.
-The comparison is given in \@ref(tab:UTAComparison).
+The comparison is given in Table \@ref(tab:UTAComparison).
 
 ```{r UTAComparison}
 comparison <- compare_scenarios(
@@ -42,7 +42,7 @@ There are several ways to adjust parameters and code in BEAM to achieve this cal
 However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.
 
 Additionally, we calculated these and other metrics for our other scenarios, and compared them.
-These metrics are given in \@ref(tab:comparison).
+These metrics are given in Table \@ref(tab:comparison).
 
 ```{r comparison}
 comparison <- compare_scenarios(
