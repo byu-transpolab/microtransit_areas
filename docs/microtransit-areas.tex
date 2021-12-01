@@ -167,7 +167,31 @@ NOV & 169.00 & 1.70 & 13.00\\
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}
 
-The metrics we calculated for each of the scenarios are given in \ref{tab:comparison}.
+We calculated several metrics from the output of our base (``South SL County only'') scenario and compared them with data from UTA's report on their pilot program \citep[\citet{UTAevalQ2}, \citet{UTAevalQ3}, \citet{UTAevalQ4}]{UTAevalQ1}.
+Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in lat March 2020.
+We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it.
+We therefore decided to use the average of the data from January through March.
+The comparison is given in \ref{tab:UTAComparison}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Scenario & Total Ridership & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
+\midrule
+\cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006.00} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
+UTA Report Average Jan--Mar & 347.33 & 11.33 & 2.06\\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
+\end{tabular}
+\end{table}
+
+It is clear from this comparison that more calibration is required in order to better match the real-world data from the pilot program.
+There are several ways to adjust parameters and code in BEAM to achieve this calibration, and work is planned to continue on doing exactly that (though that is outside the scope of this report).
+However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.
+
+Additionally, we calculated these and other metrics for our other scenarios, and compared them.
+These metrics are given in \ref{tab:comparison}.
 
 \begin{table}[H]
 \centering
@@ -179,29 +203,17 @@ Scenario & Total Ridership & Ride Hail Trips & Percent of RH Trips & Average Wai
 South SLC with Airport & 1395 & 1328 & 1.66 & 5.37 & 2.87\\
 \cellcolor{gray!6}{South SLC/Airport/Sandy} & \cellcolor{gray!6}{2796} & \cellcolor{gray!6}{2473} & \cellcolor{gray!6}{3.08} & \cellcolor{gray!6}{5.77} & \cellcolor{gray!6}{3.84}\\
 South SLC/Airport/West Jordan & 2620 & 2353 & 2.93 & 5.53 & 3.59\\
-\midrule
 \bottomrule
+\multicolumn{6}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
 \end{tabular}
 \end{table}
 
-\begin{verbatim}
-## [1] "Utilization is calculated as passengers per hour per vehicle"
-\end{verbatim}
+These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would.
+It's possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn't provide much additional benefit.
+However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle.
+Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
 
-We also compared some of these metrics to the UDOT report. We used the average from January through March. These results are given in \ref{tab:UDOTComparison}.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{lrrr}
-\toprule
-Scenario & Total Ridership & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
-\midrule
-\cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006.00} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
-UDOT Report & 347.33 & 11.33 & 2.06\\
-\bottomrule
-\multicolumn{4}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
-\end{tabular}
-\end{table}
+Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.
 
 \hypertarget{acknowledgements}{%
 \section*{Acknowledgements}\label{acknowledgements}}

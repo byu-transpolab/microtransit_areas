@@ -133,7 +133,71 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="findings" class="section level1" number="3">
 <h1><span class="header-section-number"> 3</span> Findings</h1>
-<p>The metrics we calculated for each of the scenarios are given in <a href="#tab:comparison"><strong>??</strong></a>.</p>
+<p>We calculated several metrics from the output of our base (“South SL County only”) scenario and compared them with data from UTA’s report on their pilot program <span class="citation">UTA Innovative Mobility Solutions (<a href="#ref-UTAevalQ4" role="doc-biblioref">2021d</a>)</span>.
+Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in lat March 2020.
+We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it.
+We therefore decided to use the average of the data from January through March.
+The comparison is given in <a href="#tab:UTAComparison"><strong>??</strong></a>.</p>
+<table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Scenario
+</th>
+<th style="text-align:right;">
+Total Ridership
+</th>
+<th style="text-align:right;">
+Average Wait Time (minutes)
+</th>
+<th style="text-align:right;">
+Utilization<span class="math inline">\(^{\text{a}}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+South SL County only
+</td>
+<td style="text-align:right;">
+1006.00
+</td>
+<td style="text-align:right;">
+5.82
+</td>
+<td style="text-align:right;">
+4.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UTA Report Average Jan–Mar
+</td>
+<td style="text-align:right;">
+347.33
+</td>
+<td style="text-align:right;">
+11.33
+</td>
+<td style="text-align:right;">
+2.06
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Utilization is calculated as passengers per hour per vehicle
+</td>
+</tr>
+</tfoot>
+</table>
+<p>It is clear from this comparison that more calibration is required in order to better match the real-world data from the pilot program.
+There are several ways to adjust parameters and code in BEAM to achieve this calibration, and work is planned to continue on doing exactly that (though that is outside the scope of this report).
+However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.</p>
+<p>Additionally, we calculated these and other metrics for our other scenarios, and compared them.
+These metrics are given in <a href="#tab:comparison"><strong>??</strong></a>.</p>
 <table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -239,56 +303,6 @@ South SLC/Airport/West Jordan
 </td>
 </tr>
 </tbody>
-</table>
-<pre><code>## [1] &quot;Utilization is calculated as passengers per hour per vehicle&quot;</code></pre>
-<p>We also compared some of these metrics to the UDOT report. We used the average from January through March. These results are given in <a href="#tab:UDOTComparison"><strong>??</strong></a>.</p>
-<table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Scenario
-</th>
-<th style="text-align:right;">
-Total Ridership
-</th>
-<th style="text-align:right;">
-Average Wait Time (minutes)
-</th>
-<th style="text-align:right;">
-Utilization<span class="math inline">\(^{\text{a}}\)</span>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-South SL County only
-</td>
-<td style="text-align:right;">
-1006.00
-</td>
-<td style="text-align:right;">
-5.82
-</td>
-<td style="text-align:right;">
-4.14
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-UDOT Report
-</td>
-<td style="text-align:right;">
-347.33
-</td>
-<td style="text-align:right;">
-11.33
-</td>
-<td style="text-align:right;">
-2.06
-</td>
-</tr>
-</tbody>
 <tfoot>
 <tr>
 <td style="padding: 0; border:0;" colspan="100%">
@@ -297,7 +311,18 @@ UDOT Report
 </tr>
 </tfoot>
 </table>
+<p>These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would.
+It’s possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn’t provide much additional benefit.
+However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle.
+Utilization in these scenarios on the other hand doesn’t seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.</p>
+<p>Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.</p>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-UTAevalQ4" class="csl-entry">
+———. 2021d. <span>“<span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q4)</span>.”</span> <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en</a>.
+</div>
 </div>
             </section>
 
