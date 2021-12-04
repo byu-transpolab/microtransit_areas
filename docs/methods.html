@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-12-01" />
+<meta name="date" content="2021-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,17 +133,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="methods" class="section level1" number="2">
 <h1><span class="header-section-number"> 2</span> Methods</h1>
-<p>We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
-This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
-BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation <span class="citation">(<a href="#ref-beamdocs" role="doc-biblioref">The BEAM Team 2017</a>)</span>.
-The version of the BEAM code we used is available at <em>&lt;insert commit ID or other reference to the code&gt;</em>.</p>
-<p>We identified <em>&lt;some number of&gt;</em> potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
-We also created a base scenario for the current system.
-We ran each scenario with the same parameters, and for 15 iterations each.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
-BEAM outputs an <code>events</code> file, which we then used to perform our analysis.</p>
-<p>We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
-We also compared the base scenario to the results of UTA’s September 2020 report <span class="citation">(<a href="#ref-UTAreport" role="doc-biblioref">Robertson, Callison, and Taylor 2020</a>)</span>.
-The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in <a href="methods.html#tab:UTAOD">2.1</a> below.</p>
+<p>We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model <span class="citation">(<a href="#ref-beambocs" role="doc-biblioref"><strong>beambocs?</strong></a>)</span>. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at <a href="https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d" class="uri">https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d</a>.</p>
+<p>As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA’s Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA’s website for the service <span class="citation">(<a href="#ref-SLCSouth" role="doc-biblioref">Utah Transit Authority 2021b</a>)</span>. Since we didn’t have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.</p>
+<p>We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near the SLC Int’l airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 <span class="citation">(<a href="#ref-Airport" role="doc-biblioref">Utah Transit Authority 2021a</a>)</span>, so we included that area in all scenarios except the base.</p>
+<p>We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA’s September 2020 report <span class="citation">(<a href="#ref-UTAreport" role="doc-biblioref">Robertson, Callison, and Taylor 2020</a>)</span>. The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table <a href="methods.html#tab:UTAOD">2.1</a> below.</p>
 <table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:UTAOD">Table 2.1: </span>UTA On Demand Report Findings
@@ -370,15 +363,12 @@ Average Jan–Mar
 <div id="ref-UTAreport" class="csl-entry">
 Robertson, Jaron, Eric Callison, and Ryan Taylor. 2020. <span>“<span>Utah Transit Authority Microtransit Planning Project</span>.”</span> <a href="https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en">https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en</a>.
 </div>
-<div id="ref-beamdocs" class="csl-entry">
-The BEAM Team. 2017. <span>“<span>BEAM Documentation</span>.”</span> <a href="https://beam.readthedocs.io/en/latest/about.html">https://beam.readthedocs.io/en/latest/about.html</a>.
+<div id="ref-Airport" class="csl-entry">
+Utah Transit Authority. 2021a. <span>“<span>Salt Lake City Westside</span>.”</span> <a href="https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside">https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside</a>.
 </div>
+<div id="ref-SLCSouth" class="csl-entry">
+———. 2021b. <span>“<span>Southern Salt Lake County</span>.”</span> <a href="https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County">https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County</a>.
 </div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.<a href="methods.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 

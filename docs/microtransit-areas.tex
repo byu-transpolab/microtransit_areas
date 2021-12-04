@@ -67,7 +67,7 @@
 
 % Pandoc header
 \usepackage{booktabs}
-\usepackage{ragged2e}
+% \usepackage{ragged2e}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -101,8 +101,6 @@
    \begin{keyword} Microtransit Passive Data Location Choice\end{keyword}
  \end{frontmatter}
 
-\RaggedRight
-
 \hypertarget{question}{%
 \section{Question}\label{question}}
 
@@ -124,19 +122,13 @@ We also seek to use our results (possibly in conjunction with those of UTA's rep
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
-This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
-BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation \citep{beamdocs}.
-The version of the BEAM code we used is available at \emph{\textless insert commit ID or other reference to the code\textgreater{}}.
+We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model \citep{beamdocs}. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d.
 
-We identified \emph{\textless some number of\textgreater{}} potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
-We also created a base scenario for the current system.
-We ran each scenario with the same parameters, and for 15 iterations each.\footnote{BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.}
-BEAM outputs an \texttt{events} file, which we then used to perform our analysis.
+As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA's Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA's website for the service \citep{SLCSouth}. Since we didn't have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.
 
-We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
-We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}.
-The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in \ref{tab:UTAOD} below.
+We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near the SLC Int'l airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 \citep{Airport}, so we included that area in all scenarios except the base.
+
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}. The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table \ref{tab:UTAOD} below.
 
 \begin{table}[H]
 
@@ -167,11 +159,7 @@ NOV & 169.00 & 1.70 & 13.00\\
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}
 
-We calculated several metrics from the output of our base (``South SL County only'') scenario and compared them with data from UTA's report on their pilot program \citep[\citet{UTAevalQ2}, \citet{UTAevalQ3}, \citet{UTAevalQ4}]{UTAevalQ1}.
-Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in lat March 2020.
-We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it.
-We therefore decided to use the average of the data from January through March.
-The comparison is given in \ref{tab:UTAComparison}.
+We calculated several metrics from the output of our base (``South SL County only'') scenario and compared them with data from UTA's report on their pilot program \citep[\citet{UTAevalQ2}, \citet{UTAevalQ3}, \citet{UTAevalQ4}]{UTAevalQ1}. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table \ref{tab:UTAComparison}.
 
 \begin{table}[H]
 
@@ -188,17 +176,15 @@ UTA Report Average Jan--Mar & 347.33 & 11.33 & 2.06\\
 \end{tabular}
 \end{table}
 
-It is clear from this comparison that more calibration is required in order to better match the real-world data from the pilot program.
-There are several ways to adjust parameters and code in BEAM to achieve this calibration, and work is planned to continue on doing exactly that (though that is outside the scope of this report).
-However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.
+It is clear from this comparison that more calibration is required in order to better match the real-world data from the pilot program. There are several ways to adjust parameters and code in BEAM to achieve this calibration, and work is planned to continue on doing exactly that (though that is outside the scope of this report). However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.
 
-Additionally, we calculated these and other metrics for our other scenarios, and compared them.
-These metrics are given in \ref{tab:comparison}.
+Additionally, we calculated these and other metrics for our other scenarios, and compared them. These metrics are given in Table \ref{tab:comparison}.
 
 \begin{table}[H]
 
 \caption{\label{tab:comparison}Comparison of Simulated Scenarios}
 \centering
+\resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrr}
 \toprule
 Scenario & Total Ridership & Ride Hail Trips & Percent of RH Trips & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
@@ -209,21 +195,16 @@ South SLC with Airport & 1395 & 1328 & 1.66 & 5.37 & 2.87\\
 South SLC/Airport/West Jordan & 2620 & 2353 & 2.93 & 5.53 & 3.59\\
 \bottomrule
 \multicolumn{6}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
-\end{tabular}
+\end{tabular}}
 \end{table}
 
-These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would.
-It's possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn't provide much additional benefit.
-However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle.
-Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
+These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It's possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn't provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
 
 Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.
 
 \hypertarget{acknowledgements}{%
 \section*{Acknowledgements}\label{acknowledgements}}
 \addcontentsline{toc}{section}{Acknowledgements}
-
-I would like to thank some people
 
 \bibliography{references.bib}
 
