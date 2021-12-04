@@ -51,7 +51,7 @@ source("R/eventHandler.R", echo = FALSE)
 ```
 
 
-\RaggedRight
+<!-- \RaggedRight -->
 
 Question
 ================================================================================

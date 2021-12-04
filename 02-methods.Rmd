@@ -1,27 +1,13 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 Methods
 ================================================================================
 
-We used the Behavior, Energy, Autonomy, and Mobility (BEAM) model to run and calibrate our simulations.
-This model is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model.
-BEAM is an agent-based simulation that allows agents to dynamically adjust their plans, including mode choice, depending on the current state of the mobility simulation [@beamdocs].
-The version of the BEAM code we used is available at *\<insert commit ID or other reference to the code\>*.
+We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model [@beamdocs]. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d.
 
-We modified beam to include geofencing that is described by well known text (code that converts a shapefile).
-Describe how we got fleet size and shifts etc.
+As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA's Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA's website for the service [@SLCSouth]. Since we didn't have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.
 
-We identified *\<some number of\>* potential areas to expand ridehail services to, and created BEAM scenarios incorporating each of these areas.
-We also created a base scenario for the current system.
-We ran each scenario with the same parameters, and for 15 iterations each.^[BEAM runs several iterations, and allows some percentage of agents to replan their activities and/or transportation modes between each iteration.]
-BEAM outputs an `events` file, which we then used to perform our analysis.
+We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near the SLC Int'l airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 [@Airport], so we included that area in all scenarios except the base.
 
-We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time.
-We also compared the base scenario to the results of UTA's September 2020 report [@UTAreport].
-The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table \@ref(tab:UTAOD) below.
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA's September 2020 report [@UTAreport]. The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table \@ref(tab:UTAOD) below.
 
 ```{r UTAOD}
 UTAOD <- read_csv("data/UTAODpilotinfo.csv")
