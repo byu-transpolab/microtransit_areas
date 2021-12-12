@@ -1,0 +1,220 @@
+---
+title: "Simulating Geofenced Microtransit in Salt Lake County"
+author:
+  - name: Hayden Atchley
+    email: satchley@byu.edu
+    affiliation: Brigham Young University
+  - name: Gregory Macfarlane
+    email: gregmacfarlane@byu.edu
+    affiliation: Brigham Young University
+address:
+  - code: Brigham Young University
+    address: Civil and Construction Engineering Department, 430 Engineering Building, Provo, Utah 84602
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: article
+journal: "Findings"
+bibliography: [references.bib]
+csl: apa.csl
+link-citations: yes
+abstract: |
+ This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in the Wasatch Front. We used BEAM to simulate geofenced microtransit in several areas in Salt Lake County and compared several metrics between scenarios and with observed data. We found that while our simulation needs further calibration, the reseults are relatively accurate. We also found that adding microtransit in Sandy and/or West Jordan might be effective, but adding it near SLC Int'l Airport may not.
+description: "A paper exploring geofenced microtransit simulation in Salt Lake County"
+layout: "3p, authoryear"
+keywords:
+  - Microtransit,
+  - Passive Data,
+  - Location Choice
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r load_packages, include=FALSE}
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(
+  char = as.character(read.csv("R/packages.csv", header = F)[,1])
+  )
+install_github("atchley-sha/R-packageSHA")
+library(packageSHA)
+```
+
+```{r load_functions, include=FALSE}
+source("R/eventHandler.R", echo = FALSE)
+source("R/ggmapHack.R")
+```
+
+
+Question
+================================================================================
+
+In November of 2019, Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company [@UTAreport].
+Under this partnership, UTA has supplemented its fixed-route services with on-demand shuttles hailed through a mobile application.
+So-called “microtransit” offerings of this kind have the potential to efficiently extend UTA services into low-density areas and function as first- and last-mile services for the regular fixed-route rail and bus network.
+The current microtransit service is currently only operating in southern Salt Lake County [@UTAonDemand].
+UTA is interested in examining if there are other areas where similar services can be effectively deployed.
+
+In September 2020, UTA released a report detailing a possible expansion of microtransit services to other areas in Utah following the UTA on Demand pilot program [@UTAreport].
+19 zones were identified between Brigham City and Santaquin as areas that could potentially benefit from microtransit services.
+Ridership was estimated based on number of residents and number of workers employed within each zone, as well as a mode share score that VIA developed based on their internal demand model.
+
+We seek however to provide UTA and the Utah Department of Transportation (UDOT) with a microsimulation model they can use as a template to examine future similar projects.
+We want to know how the results of such a model would compare to those of UTA’s September 2020 report.
+Though UTA's own report made no definitive recommendations regarding expansion of microtransit services, it may be useful in calibrating our simulation.
+We also seek to use our results (possibly in conjunction with those of UTA’s report) to make recommendations to UTA and UDOT regarding expansion of microtransit services.
+
+<!--chapter:end:index.Rmd-->
+
+Methods
+================================================================================
+
+We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model [@beamdocs]. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d.
+
+As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA's Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA's website for the service [@SLCSouth]. Since we didn't have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.
+
+We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near SLC Int'l Airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 [@Airport], so we included that area in all scenarios except the base. A map including all of the areas is shown in Figure \@ref(fig:map).
+
+```{r load_shapefiles}
+SLCSouth <- read_sf("data/Zones/SLCSouth/SLCSouth_polygon.shp") %>% st_transform(crs = 3857)
+Airport <- read_sf("data/Zones/WestCity/WestCity_polygon.shp") %>% st_transform(crs = 3857)
+Sandy <- read_sf("data/Zones/Sandy/Sandy_polygon.shp") %>% st_transform(crs = 3857)
+Jordan <- read_sf("data/Zones/WestJordan/WestJordan_polygon.shp") %>% st_transform(crs = 3857)
+```
+
+```{r map, fig.cap="Ridehail zones in Salt Lake County."}
+SLCMap <- get_map(
+  location = c(-111.940392, 40.675548),
+  source = "google",
+  maptype = "roadmap",
+  zoom = 10
+  ) %>% 
+  ggmap_bbox()
+
+colors <- c("SLCSouth" = "blue",
+            "Airport" = "red",
+            "Sandy" = "gray",
+            "Jordan" = "yellow")
+
+ggmap(SLCMap) +
+  coord_sf(crs = 3857) +
+  geom_sf(data = Airport, aes(fill = "Airport"), inherit.aes = F, alpha = 0.8) +
+  geom_sf(data = Sandy, aes(fill = "Sandy"), inherit.aes = F, alpha = 0.8) +
+  geom_sf(data = Jordan, aes(fill = "Jordan"), inherit.aes = F, alpha = 0.8) +
+  geom_sf(data = SLCSouth, aes(fill = "SLCSouth"), inherit.aes = F, alpha = 0.8) +
+  theme_map() +
+  scale_fill_manual(name = "Zones", values = colors)
+
+```
+
+
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA's September 2020 report [@UTAreport]. Some metrics of interest from that report were average ridership, wait time, and utilization. These results are presented in Table \@ref(tab:UTAOD) below.
+
+```{r UTAOD}
+UTAOD <- read_csv("data/UTAODpilotinfo.csv")
+UTAODJM <- UTAOD %>% 
+  filter(Month %in% c("JAN", "FEB", "MAR"))
+
+UTAOD %<>% 
+  add_row(Month = "Average",
+          `Avg wkday ridership` = mean(UTAOD$`Avg wkday ridership`),
+          Utilization = mean(UTAOD$Utilization),
+          `Avg wait time` = mean(UTAOD$`Avg wait time`)
+  ) %>% 
+  add_row(Month = "Average Jan--Mar",
+          `Avg wkday ridership` = mean(UTAODJM$`Avg wkday ridership`),
+          Utilization = mean(UTAODJM$Utilization),
+          `Avg wait time` = mean(UTAODJM$`Avg wait time`))
+
+colnames(UTAOD)[3] <- "Utilization$^{\\text{a}}$"
+
+UTAOD %>% 
+  my_kbl(align = 'lrrr',
+         caption = "UTA On Demand Report Findings") %>%
+  row_spec((nrow(UTAOD)-1):nrow(UTAOD), bold = T) %>% 
+  add_footnote("Utilization is calculated as passengers per hour per vehicle")
+```
+
+<!--chapter:end:02-methods.Rmd-->
+
+Findings
+================================================================================
+
+```{r load_events}
+SLCSouth <- read_events("data/outputEvents/SLCSouth.csv")
+Airport <- read_events("data/outputEvents/SLCSouth_WestCity.csv")
+Jordan <- read_events("data/outputEvents/SLCSouth_WestCity_WestJordan.csv")
+Sandy <- read_events("data/outputEvents/SLCSouth_WestCity_Sandy.csv")
+```
+
+
+We calculated several metrics from the output of our base ("South SL County only") scenario and compared them with data from UTA's report on their pilot program [@UTAevalQ1; @UTAevalQ2; @UTAevalQ3; @UTAevalQ4]. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also considered that the data for December was not necessarily valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table \@ref(tab:UTAComparison).
+
+```{r UTAComparison}
+comparison <- compare_scenarios(
+  list("South SL County only" = SLCSouth)) %>% 
+  select(1,2,5,6) %>% 
+  add_row("Scenario" = "UTA Report Average Jan--Mar",
+          "Weekday Ridership" = mean(UTAODJM$`Avg wkday ridership`),
+          "Average Wait Time (minutes)" = mean(UTAODJM$`Avg wait time`),
+          "Utilization" = mean(UTAODJM$Utilization))
+
+colnames(comparison)[4] <- "Utilization$^{\\text{a}}$"
+  
+comparison %>% 
+  my_kbl(align = 'lrrr',
+         caption = "Comparison of Actual Pilot Program Data with Simulated Base Scenario") %>% 
+  add_footnote("Utilization is calculated as passengers per hour per vehicle")
+```
+
+It is clear from this comparison that more calibration is required in order to better match the real-world data from the pilot program. There are several ways to adjust parameters and code in BEAM to achieve this calibration, and work is planned to continue on doing exactly that (though that is outside the scope of this report). However, it is encouraging to see that the simulated values are within an order of magnitude of the real-world values.
+
+Additionally, we calculated these and other metrics for our other scenarios, and compared them. These metrics are given in Table \@ref(tab:comparison).
+
+```{r comparison}
+comparison <- compare_scenarios(
+  list(
+    "South SL County only" = SLCSouth,
+    "South SLC with Airport" = Airport,
+    "South SLC/Airport/Sandy" = Sandy,
+    "South SLC/Airport/West Jordan" = Jordan),
+  nVehicles = c(12, 24, 36, 36))
+
+colnames(comparison)[6] <- "Utilization$^{\\text{a}}$"
+  
+comparison %>% 
+  my_kbl(align = 'lrrrrr',
+         caption = "Comparison of Simulated Scenarios",
+         latex_options = c("striped", "repeat_header", "HOLD_position", "scale_down")) %>% 
+  add_footnote("Utilization is calculated as passengers per hour per vehicle")
+```
+
+These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It's possible that the airport zone was too small to be of much use. Additionally, there is already public transit to the airport, so adding a ridehail service wouldn't necessarily provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
+
+Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.
+
+<!--chapter:end:03-findings.Rmd-->
+
+Acknowledgements {-}
+================================================================================
+
+We would like to thank all who have contributed to the R packages we used, notably:
+
+- tidyverse (https://tidyverse.tidyverse.org/)
+- ggmap (https://github.com/dkahle/ggmap)
+- kableExtra (https://rdocumentation.org/packages/kableExtra/versions/1.3.4)
+
+<!--chapter:end:04-acknowledgements.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:05-references.Rmd-->
+
