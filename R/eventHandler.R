@@ -88,7 +88,7 @@ compare_scenarios <- function(scen = list(),
   
   tibble(
     "Scenario" = names(scen),
-    "Total Ridership" = totRiders,
+    "Weekday Ridership" = totRiders,
     "Ride Hail Trips" = numRHTrips,
     "Percent of RH Trips" = pctRHModeChoice,
     "Average Wait Time (minutes)" = avgWaitTimes,
