@@ -18,7 +18,7 @@ bibliography: [references.bib]
 csl: apa.csl
 link-citations: yes
 abstract: |
- This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in the Wasatch Front.
+ This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in the Wasatch Front. We used BEAM to simulate geofenced microtransit in several areas in Salt Lake County, and compared our results to observed data from UTA as well as between scenarios. We found that our simulation needs more calibration, but the results are encouraging. We also found that expanding microtransit services to Sandy or West Jordan might be effective, but might be less so for the area near SLC International Airport.
 description: "A paper about simulating geofenced microtransit in Salt Lake County"
 layout: "3p, authoryear"
 keywords:
@@ -48,6 +48,7 @@ library(packageSHA)
 
 ```{r load_functions, include=FALSE}
 source("R/eventHandler.R", echo = FALSE)
+source("R/ggmapHack.R")
 ```
 
 
