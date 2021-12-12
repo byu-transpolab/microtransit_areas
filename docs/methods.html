@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 2 Methods | Something about Microtransit Simulation</title>
-  <meta name="description" content="A short description" />
+  <title> 2 Methods | Simulating Geofenced Microtransit in Salt Lake County</title>
+  <meta name="description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 2 Methods | Something about Microtransit Simulation" />
+  <meta property="og:title" content=" 2 Methods | Simulating Geofenced Microtransit in Salt Lake County" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A short description" />
+  <meta property="og:description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 2 Methods | Something about Microtransit Simulation" />
+  <meta name="twitter:title" content=" 2 Methods | Simulating Geofenced Microtransit in Salt Lake County" />
   
-  <meta name="twitter:description" content="A short description" />
+  <meta name="twitter:description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   
 
 
 
-<meta name="date" content="2021-12-03" />
+<meta name="date" content="2021-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,7 +123,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Something about Microtransit Simulation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Simulating Geofenced Microtransit in Salt Lake County</a>
           </h1>
         </div>
 
@@ -133,10 +133,16 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="methods" class="section level1" number="2">
 <h1><span class="header-section-number"> 2</span> Methods</h1>
-<p>We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model <span class="citation">(<a href="#ref-beambocs" role="doc-biblioref"><strong>beambocs?</strong></a>)</span>. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at <a href="https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d" class="uri">https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d</a>.</p>
-<p>As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA’s Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA’s website for the service <span class="citation">(<a href="#ref-SLCSouth" role="doc-biblioref">Utah Transit Authority 2021b</a>)</span>. Since we didn’t have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.</p>
-<p>We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near the SLC Int’l airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 <span class="citation">(<a href="#ref-Airport" role="doc-biblioref">Utah Transit Authority 2021a</a>)</span>, so we included that area in all scenarios except the base.</p>
-<p>We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA’s September 2020 report <span class="citation">(<a href="#ref-UTAreport" role="doc-biblioref">Robertson, Callison, and Taylor 2020</a>)</span>. The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table <a href="methods.html#tab:UTAOD">2.1</a> below.</p>
+<p>We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and calibrate our simulations. BEAM is being developed by Lawrence Berkeley National Laboratory and the UC Berkeley Institute for Transportation Studies, and is an extension to the MATSim (Multi-Agent Transportation Simulation) model <span class="citation">(<a href="#ref-beamdocs" role="doc-biblioref">The BEAM Team, 2017</a>)</span>. We created a fork of the main BEAM repository for this and other projects. One aspect of the code we developed is the ability to add geofencing, in which ridehail vehicles are constrained to a specific polygon. The version of the code we used is available at <a href="https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d" class="uri">https://github.com/tscore-utc/beam/commit/b28bc396fd50db6099e9aecc54c24642feb4f74d</a>.</p>
+<p>As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA’s Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA’s website for the service <span class="citation">(<a href="#ref-SLCSouth" role="doc-biblioref">Utah Transit Authority, 2021b</a>)</span>. Since we didn’t have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.</p>
+<p>We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near SLC Int’l Airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 <span class="citation">(<a href="#ref-Airport" role="doc-biblioref">Utah Transit Authority, 2021a</a>)</span>, so we included that area in all scenarios except the base. A map including all of the areas is shown in Figure <a href="methods.html#fig:map">2.1</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:map"></span>
+<img src="microtransit-areas_files/figure-html/map-1.png" alt="Ridehail zones in Salt Lake County." width="672" />
+<p class="caption">
+Figure 2.1: Ridehail zones in Salt Lake County.
+</p>
+</div>
+<p>We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA’s September 2020 report <span class="citation">(<a href="#ref-UTAreport" role="doc-biblioref">Robertson et al., 2020</a>)</span>. Some metrics of interest from that report were average ridership, wait time, and utilization. These results are presented in Table <a href="methods.html#tab:UTAOD">2.1</a> below.</p>
 <table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:UTAOD">Table 2.1: </span>UTA On Demand Report Findings
@@ -150,7 +156,7 @@ Month
 Avg wkday ridership
 </th>
 <th style="text-align:right;">
-Utilization
+Utilization<span class="math inline">\(^{\text{a}}\)</span>
 </th>
 <th style="text-align:right;">
 Avg wait time
@@ -355,19 +361,29 @@ Average Jan–Mar
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Utilization is calculated as passengers per hour per vehicle
+</td>
+</tr>
+</tfoot>
 </table>
 
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-UTAreport" class="csl-entry">
-Robertson, Jaron, Eric Callison, and Ryan Taylor. 2020. <span>“<span>Utah Transit Authority Microtransit Planning Project</span>.”</span> <a href="https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en">https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en</a>.
+Robertson, J., Callison, E., &amp; Taylor, R. (2020). <em><span>Utah Transit Authority Microtransit Planning Project</span></em>. <a href="https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en">https://www.rideuta.com/-/media/Files/About-UTA/Reports/2021/UTA_Microtransit_Consulting_Report_Final.ashx?la=en</a>
+</div>
+<div id="ref-beamdocs" class="csl-entry">
+The BEAM Team. (2017). <em><span>BEAM Documentation</span></em>. <a href="https://beam.readthedocs.io/en/latest/about.html">https://beam.readthedocs.io/en/latest/about.html</a>
 </div>
 <div id="ref-Airport" class="csl-entry">
-Utah Transit Authority. 2021a. <span>“<span>Salt Lake City Westside</span>.”</span> <a href="https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside">https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside</a>.
+Utah Transit Authority. (2021a). <em><span>Salt Lake City Westside</span></em>. <a href="https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside">https://www.rideuta.com/Services/UTA-On-Demand/Salt-Lake-City-Westside</a>
 </div>
 <div id="ref-SLCSouth" class="csl-entry">
-———. 2021b. <span>“<span>Southern Salt Lake County</span>.”</span> <a href="https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County">https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County</a>.
+Utah Transit Authority. (2021b). <em><span>Southern Salt Lake County</span></em>. <a href="https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County">https://www.rideuta.com/Services/UTA-On-Demand/Southern-Salt-Lake-County</a>
 </div>
 </div>
             </section>

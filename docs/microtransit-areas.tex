@@ -32,7 +32,7 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -43,6 +43,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\usepackage{graphicx}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -53,7 +54,7 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={},
-            pdftitle={Something about Microtransit Simulation},
+            pdftitle={Simulating Geofenced Microtransit in Salt Lake County},
             colorlinks=false,
             urlcolor=blue,
             linkcolor=magenta,
@@ -88,7 +89,7 @@
 \begin{document}
 \begin{frontmatter}
 
-  \title{Something about Microtransit Simulation}
+  \title{Simulating Geofenced Microtransit in Salt Lake County}
     \author[Brigham Young University]{Hayden Atchley}
    \ead{satchley@byu.edu} 
     \author[Brigham Young University]{Gregory Macfarlane}
@@ -96,15 +97,15 @@
       \address[Brigham Young University]{Civil and Construction Engineering Department, 430 Engineering Building, Provo, Utah 84602}
     
   \begin{abstract}
-  This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in the Wasatch Front.
+  This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in Salt Lake County. We used BEAM to simulate geofenced microtransit in several areas, and compared our results to observed data from UTA as well as between scenarios. We found that our simulation needs more calibration, but the results are encouraging. We also found that expanding microtransit services to Sandy or West Jordan might be effective, but might be less so for the area near SLC International Airport.
   \end{abstract}
-   \begin{keyword} Microtransit Passive Data Location Choice\end{keyword}
+   \begin{keyword} Microtransit, Passive Data, Location Choice\end{keyword}
  \end{frontmatter}
 
 \hypertarget{question}{%
 \section{Question}\label{question}}
 
-In November of 2019, the Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company \citep{UTAreport}.
+In November of 2019, Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company \citep{UTAreport}.
 Under this partnership, UTA has supplemented its fixed-route services with on-demand shuttles hailed through a mobile application.
 So-called ``microtransit'' offerings of this kind have the potential to efficiently extend UTA services into low-density areas and function as first- and last-mile services for the regular fixed-route rail and bus network.
 The current microtransit service is currently only operating in southern Salt Lake County \citep{UTAonDemand}.
@@ -126,9 +127,15 @@ We used BEAM (Behavior, Energy, Autonomy, and Mobility) as our model to run and 
 
 As UTA already has a ridehail pilot program underway, we reached out to find the fleet size and shifts for the ridehail vehicles. Shaina Quinn, a researcher at UTA's Office of Innovative Mobility Solutions, informed us that typically 12 ridehail vehicles provide service at a time. We found the shifts on UTA's website for the service \citep{SLCSouth}. Since we didn't have information on fleet size or shifts for any scenario except the existing pilot program, we used the same values for each additional study area as well.
 
-We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near the SLC Int'l airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 \citep{Airport}, so we included that area in all scenarios except the base.
+We first created a base scenario to model the existing pilot program. There were three other areas we wished to analyze for potential ridehail expansion: near SLC Int'l Airport, Sandy, and West Jordan. The area near the airport is planned to get ridehail service beginning December 13, 2021 \citep{Airport}, so we included that area in all scenarios except the base. A map including all of the areas is shown in Figure \ref{fig:map}.
 
-We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}. The results of that report used many qualitative metrics, but some quantitative metrics of interest were average ridership, wait time, and utilization. These results of the report are presented in Table \ref{tab:UTAOD} below.
+\begin{figure}
+\centering
+\includegraphics{microtransit-areas_files/figure-latex/map-1.pdf}
+\caption{\label{fig:map}Ridehail zones in Salt Lake County.}
+\end{figure}
+
+We compared the different scenarios on several metrics, including weekday ridership, utilization (passengers/hour/vehicle), wait time, and travel time. We also compared the base scenario to the results of UTA's September 2020 report \citep{UTAreport}. Some metrics of interest from that report were average ridership, wait time, and utilization. These results are presented in Table \ref{tab:UTAOD} below.
 
 \begin{table}[H]
 
@@ -136,7 +143,7 @@ We compared the different scenarios on several metrics, including weekday riders
 \centering
 \begin{tabular}[t]{lrrr}
 \toprule
-Month & Avg wkday ridership & Utilization & Avg wait time\\
+Month & Avg wkday ridership & Utilization$^{\text{a}}$ & Avg wait time\\
 \midrule
 \cellcolor{gray!6}{DEC} & \cellcolor{gray!6}{224.00} & \cellcolor{gray!6}{1.33} & \cellcolor{gray!6}{9.00}\\
 JAN & 334.00 & 2.00 & 11.00\\
@@ -153,13 +160,14 @@ NOV & 169.00 & 1.70 & 13.00\\
 \textbf{\cellcolor{gray!6}{Average}} & \textbf{\cellcolor{gray!6}{228.25}} & \textbf{\cellcolor{gray!6}{1.53}} & \textbf{\cellcolor{gray!6}{10.75}}\\
 \textbf{Average Jan--Mar} & \textbf{347.33} & \textbf{2.06} & \textbf{11.33}\\
 \bottomrule
+\multicolumn{4}{l}{\textsuperscript{a} Utilization is calculated as passengers per hour per vehicle}\\
 \end{tabular}
 \end{table}
 
 \hypertarget{findings}{%
 \section{Findings}\label{findings}}
 
-We calculated several metrics from the output of our base (``South SL County only'') scenario and compared them with data from UTA's report on their pilot program \citep[\citet{UTAevalQ2}, \citet{UTAevalQ3}, \citet{UTAevalQ4}]{UTAevalQ1}. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table \ref{tab:UTAComparison}.
+We calculated several metrics from the output of our base (``South SL County only'') scenario and compared them with data from UTA's report on their pilot program \citep{UTAevalQ1, UTAevalQ2, UTAevalQ3, UTAevalQ4}. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also considered that the data for December was not necessarily valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table \ref{tab:UTAComparison}.
 
 \begin{table}[H]
 
@@ -167,7 +175,7 @@ We calculated several metrics from the output of our base (``South SL County onl
 \centering
 \begin{tabular}[t]{lrrr}
 \toprule
-Scenario & Total Ridership & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
+Scenario & Weekday Ridership & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
 \midrule
 \cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006.00} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
 UTA Report Average Jan--Mar & 347.33 & 11.33 & 2.06\\
@@ -187,7 +195,7 @@ Additionally, we calculated these and other metrics for our other scenarios, and
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrr}
 \toprule
-Scenario & Total Ridership & Ride Hail Trips & Percent of RH Trips & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
+Scenario & Weekday Ridership & Ride Hail Trips & Percent of RH Trips & Average Wait Time (minutes) & Utilization$^{\text{a}}$\\
 \midrule
 \cellcolor{gray!6}{South SL County only} & \cellcolor{gray!6}{1006} & \cellcolor{gray!6}{930} & \cellcolor{gray!6}{1.16} & \cellcolor{gray!6}{5.82} & \cellcolor{gray!6}{4.14}\\
 South SLC with Airport & 1395 & 1328 & 1.66 & 5.37 & 2.87\\
@@ -198,13 +206,25 @@ South SLC/Airport/West Jordan & 2620 & 2353 & 2.93 & 5.53 & 3.59\\
 \end{tabular}}
 \end{table}
 
-These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It's possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn't provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
+These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It's possible that the airport zone was too small to be of much use. Additionally, there is already public transit to the airport, so adding a ridehail service wouldn't necessarily provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn't seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.
 
 Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.
 
 \hypertarget{acknowledgements}{%
 \section*{Acknowledgements}\label{acknowledgements}}
 \addcontentsline{toc}{section}{Acknowledgements}
+
+We would like to thank all who have contributed to the R packages we used, notably:
+
+\begin{itemize}
+\tightlist
+\item
+  tidyverse (https://tidyverse.tidyverse.org/)
+\item
+  ggmap (https://github.com/dkahle/ggmap)
+\item
+  kableExtra (https://rdocumentation.org/packages/kableExtra/versions/1.3.4)
+\end{itemize}
 
 \bibliography{references.bib}
 

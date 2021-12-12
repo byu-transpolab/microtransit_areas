@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 3 Findings | Something about Microtransit Simulation</title>
-  <meta name="description" content="A short description" />
+  <title> 3 Findings | Simulating Geofenced Microtransit in Salt Lake County</title>
+  <meta name="description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 3 Findings | Something about Microtransit Simulation" />
+  <meta property="og:title" content=" 3 Findings | Simulating Geofenced Microtransit in Salt Lake County" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A short description" />
+  <meta property="og:description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 3 Findings | Something about Microtransit Simulation" />
+  <meta name="twitter:title" content=" 3 Findings | Simulating Geofenced Microtransit in Salt Lake County" />
   
-  <meta name="twitter:description" content="A short description" />
+  <meta name="twitter:description" content="A paper about simulating geofenced microtransit in Salt Lake County" />
   
 
 
 
-<meta name="date" content="2021-12-03" />
+<meta name="date" content="2021-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,7 +123,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Something about Microtransit Simulation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Simulating Geofenced Microtransit in Salt Lake County</a>
           </h1>
         </div>
 
@@ -133,7 +133,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="findings" class="section level1" number="3">
 <h1><span class="header-section-number"> 3</span> Findings</h1>
-<p>We calculated several metrics from the output of our base (“South SL County only”) scenario and compared them with data from UTA’s report on their pilot program <span class="citation">UTA Innovative Mobility Solutions (<a href="#ref-UTAevalQ4" role="doc-biblioref">2021d</a>)</span>. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also figured the data for December was not particularly valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table <a href="findings.html#tab:UTAComparison">3.1</a>.</p>
+<p>We calculated several metrics from the output of our base (“South SL County only”) scenario and compared them with data from UTA’s report on their pilot program <span class="citation">(<a href="#ref-UTAevalQ1" role="doc-biblioref">UTA Innovative Mobility Solutions, 2021a</a>, <a href="#ref-UTAevalQ2" role="doc-biblioref">2021b</a>, <a href="#ref-UTAevalQ3" role="doc-biblioref">2021c</a>, <a href="#ref-UTAevalQ4" role="doc-biblioref">2021d</a>)</span>. Much of the data in that report, however, is not necessarily representative, due to the COVID-19 pandemic and its onset in late March 2020. We also considered that the data for December was not necessarily valuable: since the service was new, people who would otherwise have used it may not have been accustomed to or even known about it. We therefore decided to use the average of the data from January through March. The comparison is given in Table <a href="findings.html#tab:UTAComparison">3.1</a>.</p>
 <table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:UTAComparison">Table 3.1: </span>Comparison of Actual Pilot Program Data with Simulated Base Scenario
@@ -144,7 +144,7 @@ div.csl-indent {
 Scenario
 </th>
 <th style="text-align:right;">
-Total Ridership
+Weekday Ridership
 </th>
 <th style="text-align:right;">
 Average Wait Time (minutes)
@@ -204,7 +204,7 @@ UTA Report Average Jan–Mar
 Scenario
 </th>
 <th style="text-align:right;">
-Total Ridership
+Weekday Ridership
 </th>
 <th style="text-align:right;">
 Ride Hail Trips
@@ -310,14 +310,23 @@ South SLC/Airport/West Jordan
 </tr>
 </tfoot>
 </table>
-<p>These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It’s possible that the airport zone was too small to be of much use, and there is already public transit to the airport, so adding a ridehail service wouldn’t provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn’t seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.</p>
+<p>These results seem to indicate that adding a ridehail zone near the airport would not have much of an effect, but adding a zone in either Sandy or West Jordan would. It’s possible that the airport zone was too small to be of much use. Additionally, there is already public transit to the airport, so adding a ridehail service wouldn’t necessarily provide much additional benefit. However, the other scenarios present a substantial increase in ridership, as well as percentage of trips involving a ridehail vehicle. Utilization in these scenarios on the other hand doesn’t seem to improve; it may be that the fleet size needs to be adjusted to better match the demand.</p>
 <p>Overall, these results seem to indicate that additional implementation of ridehail services would see good use, and should be seriously considered by UTA.</p>
 
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-UTAevalQ1" class="csl-entry">
+UTA Innovative Mobility Solutions. (2021a). <em><span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q1)</span></em>. <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_microtransit_pilot_Q1_report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_microtransit_pilot_Q1_report.ashx?la=en</a>
+</div>
+<div id="ref-UTAevalQ2" class="csl-entry">
+UTA Innovative Mobility Solutions. (2021b). <em><span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q2)</span></em>. <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q2_Report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q2_Report.ashx?la=en</a>
+</div>
+<div id="ref-UTAevalQ3" class="csl-entry">
+UTA Innovative Mobility Solutions. (2021c). <em><span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q3)</span></em>. <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q3_Report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q3_Report.ashx?la=en</a>
+</div>
 <div id="ref-UTAevalQ4" class="csl-entry">
-———. 2021d. <span>“<span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q4)</span>.”</span> <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en</a>.
+UTA Innovative Mobility Solutions. (2021d). <em><span>Utah Transit Authority Quarterly Microtransit Pilot Project Evaluation (Q4)</span></em>. <a href="https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en">https://www.rideuta.com/-/media/Files/Services/Via/Final_UTA_Microtransit_Pilot_Q4_Report.ashx?la=en</a>
 </div>
 </div>
             </section>
