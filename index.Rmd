@@ -1,5 +1,5 @@
 ---
-title: "Something about Microtransit Simulation"
+title: "Simulating Geofenced Microtransit in Salt Lake County"
 author:
   - name: Hayden Atchley
     email: satchley@byu.edu
@@ -15,15 +15,15 @@ site: bookdown::bookdown_site
 documentclass: article
 journal: "Findings"
 bibliography: [references.bib]
-biblio-style: apalike
+csl: apa.csl
 link-citations: yes
 abstract: |
  This paper has to do with simulating microtransit and determining whether it makes sense to deploy microtransit in other areas in the Wasatch Front.
-description: "A short description"
+description: "A paper about simulating geofenced microtransit in Salt Lake County"
 layout: "3p, authoryear"
 keywords:
-  - Microtransit
-  - Passive Data
+  - Microtransit,
+  - Passive Data,
   - Location Choice
 editor_options: 
   chunk_output_type: console
@@ -56,7 +56,7 @@ source("R/eventHandler.R", echo = FALSE)
 Question
 ================================================================================
 
-In November of 2019, the Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company [@UTAreport].
+In November of 2019, Utah Transit Authority (UTA) began a partnership with Via Transportation, a private mobility company [@UTAreport].
 Under this partnership, UTA has supplemented its fixed-route services with on-demand shuttles hailed through a mobile application.
 So-called “microtransit” offerings of this kind have the potential to efficiently extend UTA services into low-density areas and function as first- and last-mile services for the regular fixed-route rail and bus network.
 The current microtransit service is currently only operating in southern Salt Lake County [@UTAonDemand].
