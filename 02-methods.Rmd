@@ -26,7 +26,7 @@ SLCMap <- get_map(
 colors <- c("SLCSouth" = "blue",
             "Airport" = "red",
             "Sandy" = "gray",
-            "Jordan" = "yellow")
+            "West Jordan" = "yellow")
 
 ggmap(SLCMap) +
   coord_sf(crs = 3857) +
