@@ -32,7 +32,7 @@ ggmap(SLCMap) +
   coord_sf(crs = 3857) +
   geom_sf(data = Airport, aes(fill = "Airport"), inherit.aes = F, alpha = 0.8) +
   geom_sf(data = Sandy, aes(fill = "Sandy"), inherit.aes = F, alpha = 0.8) +
-  geom_sf(data = Jordan, aes(fill = "Jordan"), inherit.aes = F, alpha = 0.8) +
+  geom_sf(data = Jordan, aes(fill = "West Jordan"), inherit.aes = F, alpha = 0.8) +
   geom_sf(data = SLCSouth, aes(fill = "SLCSouth"), inherit.aes = F, alpha = 0.8) +
   theme_map() +
   scale_fill_manual(name = "Zones", values = colors)
