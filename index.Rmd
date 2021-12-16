@@ -48,7 +48,6 @@ library(packageSHA)
 
 ```{r load_functions, include=FALSE}
 source("R/eventHandler.R", echo = FALSE)
-source("R/ggmapHack.R")
 ```
 
 
